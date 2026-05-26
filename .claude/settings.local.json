@@ -4,7 +4,11 @@
       "Bash(python -m http.server 3333)",
       "PowerShell(Start-Process \"http://localhost:3333\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3333/)",
-      "WebFetch(domain:landonorris.com)"
+      "WebFetch(domain:landonorris.com)",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\praya\\\\Downloads\\\\rahi.jpg.png\" \"d:\\\\2026\\\\PROJECTS\\\\portfolio\\\\photo.jpg\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }

@@ -384,8 +384,8 @@ body.recruiter .cat .name{display:none}
 <header>
   <div class="navbar">
     <div class="banner"><div class="wrap">
-      <span>👔 Recruiter mode: cats asleep, facts only.</span>
-      <button type="button" data-toggle-mode>ok fine, show me the cats</button>
+      <span>☕ There's a fun version of this site: a café run by two cats, with a racing game.</span>
+      <button type="button" data-toggle-mode>open the café 🐈</button>
     </div></div>
     <div class="wrap nav">
       <a class="logo" href="#top">Rahi's <small>café</small></a>
@@ -849,11 +849,13 @@ body.recruiter .cat .name{display:none}
   /* ── recruiter mode ── */
   const setMode = (rec, announce) => {
     document.body.classList.toggle('recruiter', rec);
-    const u = new URL(location); rec ? u.searchParams.set('mode','recruiter') : u.searchParams.delete('mode'); history.replaceState(null,'',u);
+    // recruiter view is the default: plain URL. The café lives at ?mode=fun
+    const u = new URL(location); rec ? u.searchParams.delete('mode') : u.searchParams.set('mode','fun'); history.replaceState(null,'',u);
+    if (announce) store.set('cafe-mode', rec ? 'recruiter' : 'fun'); // remember a visitor's own choice
     (rec ? document.body : scene).appendChild(chiku);
     [chiku, piku].forEach(c => { c.classList.toggle('asleep', rec); c.classList.remove('upside','walking','swat'); });
     if (rec) knockables.forEach(fix);
-    if (announce) toast(rec ? 'Cats are asleep. Facts only. 👔' : 'The cats are awake. Good luck. 🐈');
+    if (announce) toast(rec ? 'Cats are asleep. Facts only. 👔' : 'Welcome to the café. The cats are awake. Good luck. 🐈');
   };
   document.querySelectorAll('[data-toggle-mode]').forEach(b => b.onclick = () => setMode(!document.body.classList.contains('recruiter'), true));
 
@@ -916,7 +918,9 @@ body.recruiter .cat .name{display:none}
     requestAnimationFrame(frame);
   };
 
-  setMode(new URLSearchParams(location.search).get('mode') === 'recruiter');
+  // default = recruiter view; ?mode=fun (or a visitor's earlier choice) opens the café
+  const asked = new URLSearchParams(location.search).get('mode');
+  setMode(asked === 'fun' ? false : asked === 'recruiter' ? true : store.get('cafe-mode') !== 'fun');
 })();
 </script>
 </body>

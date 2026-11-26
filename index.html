@@ -379,6 +379,23 @@ body.recruiter .cat .name{display:none}
 body.recruiter h1 .job-title{display:block;font-size:.5em;font-weight:700;font-style:normal;color:var(--accent);letter-spacing:-.01em;margin-top:12px;font-variation-settings:"SOFT" 0}
 /* About: the description page gets more room than the checklist */
 body.recruiter .notebook{grid-template-columns:7fr 5fr;--split:58.333%}
+/* hero photo: sits in the third column, right above the last fact */
+body.recruiter .hero-top{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
+body.recruiter .hero-intro{grid-column:span 2}
+body.recruiter .headshot{display:block;width:100%;max-width:240px;aspect-ratio:301/331;height:auto;object-fit:cover;justify-self:center;
+  border-radius:8px;border:6px solid #fffdf7;box-shadow:0 10px 24px -10px rgba(43,29,20,.45),0 0 0 1px var(--line);margin-bottom:24px}
+@media (max-width:720px){body.recruiter .hero-top{grid-template-columns:1fr}body.recruiter .hero-intro{grid-column:auto}body.recruiter .headshot{grid-row:1;justify-self:start;max-width:150px;margin-bottom:0}}
+/* Projects: name → stack → what it is → numbers → challenge → link */
+body.recruiter .card{display:flex;flex-direction:column;padding:26px 26px 24px}
+body.recruiter .card-top{order:0}
+body.recruiter .card h3{order:1;margin:8px 0 0}
+body.recruiter .card .tags{order:2;margin:10px 0 16px}
+body.recruiter .card .tags span{background:var(--paper2);border-color:transparent;font-size:.72rem}
+body.recruiter .card .kind{order:3;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:4px}
+body.recruiter .card p.what{order:4;color:#4a3a2e}
+body.recruiter .card .stats{order:5;margin:16px 0 4px}
+body.recruiter .card .lore{order:6;margin:10px 0 0;font-size:.86rem}
+body.recruiter .card .links{order:7;margin-top:auto;padding-top:16px}
 /* Experience: the work items carry the receipt; barcode steps back */
 body.recruiter .receipt .shop{font-size:1.1rem}
 body.recruiter .receipt ul{margin:4px 0}
@@ -439,6 +456,8 @@ body.recruiter .barcode{height:24px;width:42%;margin-top:14px}
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="placemat paper knock" data-name="the placemat">
+        <div class="hero-top">
+        <div class="hero-intro">
         <p class="special"><span class="dot"></span> <span class="fun-only">Today's special ·</span> Open to backend / SDE roles · Pune</p>
         <h1>
           <span class="fun-only">He<span class="stretch">llll</span><span class="stretch">oooo</span>,<br/>I'm <em>Rahi</em>.</span>
@@ -449,6 +468,9 @@ body.recruiter .barcode{height:24px;width:42%;margin-top:14px}
         <div class="hero-actions">
           <a class="btn solid" href="#projects">See what I've shipped →</a>
           <a class="btn" href="assets/Rahi_Padwal_Resume.pdf" target="_blank" rel="noopener">Download résumé</a>
+        </div>
+        </div>
+        <img class="headshot plain-only" src="photo.jpg" alt="Rahi Padwal" width="301" height="331" />
         </div>
         <div class="facts">
           <div class="fact"><b>~1M</b><span>company profiles processed @ GrowthPal</span></div>
@@ -596,8 +618,8 @@ body.recruiter .barcode{height:24px;width:42%;margin-top:14px}
           <div class="kind">Save any link. Find it later by describing it in plain English.</div>
           <div class="ability"><b>Special ability</b>Finds the link you only vaguely remember.</div>
           <p class="what">NestJS + PostgreSQL backend with hybrid search: pgvector similarity over Gemini 768-dim embeddings, blended with full-text matching. JWT + Google OAuth, shipped via GitHub Actions.</p>
-          <div class="stats"><div><span>Users, week 1</span><b>20+ organic</b></div><div><span>Status</span><b>Live · Web Store</b></div></div>
-          <p class="lore"><b><span class="fun-only">Survived:</span><span class="plain-only">Challenge:</span></b> the free Render Postgres quietly expired. Moved everything to Supabase via the Session Pooler and hand-reconciled Prisma's migration history.</p>
+          <div class="stats"><div><span>Used by</span><b>20+ users in week 1</b></div><div><span>Status</span><b>Live · Web Store</b></div></div>
+          <p class="lore"><b><span class="fun-only">Survived:</span><span class="plain-only">Challenge:</span></b> <span class="fun-only">the free Render Postgres quietly expired. Moved everything to Supabase via the Session Pooler and hand-reconciled Prisma's migration history.</span><span class="plain-only">free Render Postgres expired; migrated to Supabase and reconciled the Prisma migrations by hand.</span></p>
           <div class="tags"><span>TypeScript</span><span>NestJS</span><span>PostgreSQL</span><span>pgvector</span><span>Prisma</span><span>Gemini API</span></div>
           <div class="links"><a href="https://chromewebstore.google.com/detail/gphimbgfeeiodbpnilpaeiloplfnoedn" target="_blank" rel="noopener">Chrome Web Store ↗</a></div>
         </article>
@@ -608,7 +630,7 @@ body.recruiter .barcode{height:24px;width:42%;margin-top:14px}
           <div class="ability"><b>Special ability</b>Never crashes mid-lecture.</div>
           <p class="what">Feeds MySQL, MongoDB and cloud DB schemas into LLM prompts so generated queries match real data. Explains existing queries in plain English.</p>
           <div class="stats"><div><span>Used by</span><b>3+ professors</b></div><div><span>Where</span><b>Live, in lectures</b></div></div>
-          <p class="lore"><b><span class="fun-only">Survived:</span><span class="plain-only">Challenge:</span></b> live lectures, the highest-stakes demo there is. Pre-DB validation and fallback messages that explain how to rephrase meant it never threw a raw error at a class.</p>
+          <p class="lore"><b><span class="fun-only">Survived:</span><span class="plain-only">Challenge:</span></b> <span class="fun-only">live lectures, the highest-stakes demo there is. Pre-DB validation and fallback messages that explain how to rephrase meant it never threw a raw error at a class.</span><span class="plain-only">live lectures. Pre-DB validation and friendly fallbacks, so a class never sees a raw error.</span></p>
           <div class="tags"><span>FastAPI</span><span>Groq API</span><span>MySQL</span><span>MongoDB</span><span>React</span></div>
           <div class="links"><a href="https://github.com/Rahi-padwal/Query_Wisee" target="_blank" rel="noopener">GitHub ↗</a></div>
         </article>
@@ -619,7 +641,7 @@ body.recruiter .barcode{height:24px;width:42%;margin-top:14px}
           <div class="ability"><b>Special ability</b>Ends the night-before-exam PYQ hunt.</div>
           <p class="what">Academic resource platform with domain-restricted Google OAuth 2.0. Grew faster than planned, so the backend went from MySQL to Firebase.</p>
           <div class="stats"><div><span>Users</span><b>500+ verified</b></div><div><span>Migration downtime</span><b>0 min</b></div></div>
-          <p class="lore"><b><span class="fun-only">Survived:</span><span class="plain-only">Challenge:</span></b> migrating the whole database during peak exam traffic. Rebuilding the floor while people were standing on it.</p>
+          <p class="lore"><b><span class="fun-only">Survived:</span><span class="plain-only">Challenge:</span></b> <span class="fun-only">migrating the whole database during peak exam traffic. Rebuilding the floor while people were standing on it.</span><span class="plain-only">moved MySQL → Firebase during peak exam traffic, with zero downtime.</span></p>
           <div class="tags"><span>React</span><span>Node.js</span><span>Express</span><span>Firebase</span><span>OAuth 2.0</span></div>
           <div class="links"><a href="https://github.com/Rahi-padwal/answerkey" target="_blank" rel="noopener">GitHub ↗</a></div>
         </article>
